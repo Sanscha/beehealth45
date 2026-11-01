@@ -210,5 +210,61 @@ class DatabaseSeeder extends Seeder
             'status' => 'completed',
             'notes' => 'Online payment via Razorpay checkout.',
         ]);
+
+        // 9. Create Library Manager (Owner) and Sample Libraries
+        $manager = User::create([
+            'name' => 'Vikram Malhotra',
+            'email' => 'manager@library.com',
+            'phone' => '9822001122',
+            'role' => 'manager',
+            'status' => 'active',
+            'password' => Hash::make('manager123'),
+        ]);
+
+        $manager2 = User::create([
+            'name' => 'Sunil Deshmukh',
+            'email' => 'sunil@studyhaven.in',
+            'phone' => '9822003344',
+            'role' => 'manager',
+            'status' => 'active',
+            'password' => Hash::make('manager123'),
+        ]);
+
+        \App\Models\Library::create([
+            'user_id' => $manager->id,
+            'name' => 'Apex Central Study Hub',
+            'slug' => 'apex-central-study-hub',
+            'address' => '402 Prestige Point, Shukrawar Peth',
+            'city' => 'Pune',
+            'state' => 'Maharashtra',
+            'pincode' => '411002',
+            'phone' => '9822001122',
+            'email' => 'contact@apexcentral.in',
+            'description' => 'Premium air-conditioned study hall with high-speed WiFi and individual ergonomic seating.',
+            'amenities' => ['High Speed WiFi', 'Air Conditioned', 'Power Outlets', 'RO Water Dispenser', 'CCTV Security'],
+            'total_seats' => 60,
+            'registration_fee' => 499.00,
+            'payment_status' => 'paid',
+            'status' => 'active',
+        ]);
+
+        \App\Models\Library::create([
+            'user_id' => $manager2->id,
+            'name' => 'Study Haven Reading Room',
+            'slug' => 'study-haven-reading-room',
+            'address' => '12 Near Modern College, Shivajinagar',
+            'city' => 'Pune',
+            'state' => 'Maharashtra',
+            'pincode' => '411005',
+            'phone' => '9822003344',
+            'email' => 'info@studyhaven.in',
+            'description' => 'Dedicated silent reading room designed for UPSC and competitive exam aspirants.',
+            'amenities' => ['Silent Zones', 'Newspaper Desk', 'Lockers', 'Power Sockets'],
+            'total_seats' => 40,
+            'registration_fee' => 499.00,
+            'payment_status' => 'unpaid',
+            'status' => 'pending_payment',
+        ]);
+
     }
 }
